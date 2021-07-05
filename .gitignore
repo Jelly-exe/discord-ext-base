@@ -1,0 +1,8 @@
+bot.yml
+venv/*
+.idea/*
+__pycache__/*
+Logs/*
+discord.log
+Assets/Cards/*
+Assets/Profiles/*
