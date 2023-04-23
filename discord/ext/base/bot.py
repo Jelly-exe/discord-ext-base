@@ -10,9 +10,9 @@ from discord.app_commands import AppCommandError
 from discord.ext import commands
 from datetime import datetime
 
-from discord.ext.base.Utils.logger import Logger
+from Utils.logger import Logger
 
-from discord.ext.base.config import config
+from config import config
 
 
 class BaseBot(commands.Bot):

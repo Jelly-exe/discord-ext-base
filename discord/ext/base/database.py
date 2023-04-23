@@ -2,7 +2,6 @@ from typing import Dict
 
 import sqlalchemy
 
-
 class Database:
     def __init__(self, driver):
         self.engine = sqlalchemy.create_engine(driver)
