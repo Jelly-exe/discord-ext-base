@@ -2,7 +2,7 @@ import re
 
 from setuptools import setup
 
-with open('discord/ext/menus/__init__.py') as f:
+with open('discord/ext/base/__init__.py') as f:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
 
 if not version:
