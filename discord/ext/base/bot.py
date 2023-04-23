@@ -12,7 +12,7 @@ from datetime import datetime
 
 from discord.ext.utils.logger import Logger
 
-from config import config
+from . import config
 
 
 class BaseBot(commands.Bot):
