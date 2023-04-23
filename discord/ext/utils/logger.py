@@ -1,7 +1,7 @@
 import discord
 
 from datetime import datetime
-from colours import colours
+import colours
 
 
 class Logger:

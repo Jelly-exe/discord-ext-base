@@ -1,6 +1,4 @@
 import json
-
-
 class DynamicAccessNestedDict:
     """Dynamically get/set nested dictionary keys of 'data' dict"""
 
