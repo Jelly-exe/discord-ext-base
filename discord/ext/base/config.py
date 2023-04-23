@@ -1,4 +1,5 @@
 import json
+from typing import List
 class DynamicAccessNestedDict:
     """Dynamically get/set nested dictionary keys of 'data' dict"""
 
