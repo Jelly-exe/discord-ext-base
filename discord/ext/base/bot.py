@@ -40,7 +40,7 @@ class BaseBot(commands.Bot):
         self.botGuild = discord.Object(id=self.config["guildId"])
 
         self.logger.startup(f'{self._displayStep()}. Setting activity')
-        activity = discord.Activity(name=status[1] if sys.argv[1].lower() == "true" else status[0], type=discord.ActivityType.playing)
+        activity = discord.Activity(name=status[1] if devMode else status[0], type=discord.ActivityType.playing)
 
         self.logger.startup(f'{self._displayStep()}. Setting up intents')
         intents = discord.Intents.all()
