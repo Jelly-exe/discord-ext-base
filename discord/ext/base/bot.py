@@ -10,9 +10,8 @@ from discord.app_commands import AppCommandError
 from discord.ext import commands
 from datetime import datetime
 
-from discord.ext.utils.logger import Logger
-
-from . import config
+from .logger import Logger
+from .config import config
 
 
 class BaseBot(commands.Bot):
@@ -71,6 +70,7 @@ class BaseBot(commands.Bot):
 
         self.matchIds = []
         self.extra()
+
     def extra(self):
         pass
 
@@ -104,7 +104,6 @@ class BaseBot(commands.Bot):
                 self.logger.startup(f'{self._displayStep()}. Loading {ext}')
             except Exception as error:
                 self.logger.critical(f'{self._displayStep()}. {ext} cannot be loaded. [{error}]')
-
 
     async def setup_hook(self):
         await self.loadCogs()
