@@ -1,5 +1,3 @@
-git+https://github.com/Rapptz/discord.py
-requests
-discord.py
-PyYAML
+discord.py~=2.2.2
 mysql-connector-python
+sqlalchemy~=2.0.10
