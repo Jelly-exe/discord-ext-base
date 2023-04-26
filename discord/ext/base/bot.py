@@ -15,6 +15,19 @@ from .config import config
 
 
 class BaseBot(commands.Bot):
+
+    @property
+    def config(self):
+        return self._config
+
+    @property
+    def secure(self):
+        return self._secure
+
+    @property
+    def database(self):
+        return self._database
+
     def __init__(self, devMode: bool, status: Tuple[str, str]):
         self.databaseURI = None
         self.step = 0
@@ -30,10 +43,10 @@ class BaseBot(commands.Bot):
             self.runType = "development"
 
         self.logger.startup(f'{self._displayStep()}. Reading configs\'s')
-        self.get_config()
+        self._config = self.get_config()
 
         with open("Configs/secure.json", encoding='utf8') as file:
-            self.secure = json.load(file)
+            self._secure = json.load(file)
 
         self.logger.startup(f'{self._displayStep()}. Defining extensions and guild object')
         self.initial_extensions = []
@@ -50,7 +63,7 @@ class BaseBot(commands.Bot):
         intents.message_content = True
 
         self.logger.startup(f'{self._displayStep()}. Connecting to database')
-        self.database = self.get_database()
+        self._database = self.get_database()
 
         self.logger.startup(f'{self._displayStep()}. Initializing the bot')
         super().__init__(command_prefix=self._getPrefix(),
@@ -75,7 +88,7 @@ class BaseBot(commands.Bot):
         pass
 
     def get_config(self):
-        self.config = config(self.runType, "config.json")
+        return config(self.runType, "config.json")
 
     def get_database(self):
         return None
