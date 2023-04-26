@@ -4,7 +4,7 @@ import sqlalchemy
 
 
 class Database:
-    def __init__(self, driver: str, tables: Tuple[str]):
+    def __init__(self, driver: str, tables: Tuple[str, ...]):
         self.engine = sqlalchemy.create_engine(driver)
         self.metadata = sqlalchemy.MetaData()
 
