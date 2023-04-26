@@ -29,6 +29,6 @@ class Database:
         tables = {}
 
         for table in self.tableKeys:
-            tables[table.lower()] = Table(table, self.metadata, autoload_with=self.engine)
+            tables[table.lower()] = sqlalchemy.Table(table, self.metadata, autoload_with=self.engine)
 
         return tables
