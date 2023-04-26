@@ -22,6 +22,6 @@ class Database:
         tables = {}
 
         for table in self.metadata.tables.keys():
-            tables[table] = self.metadata.tables[table]
+            tables[table] = Table(table, self.metadata, autoload_with=self.engine)
 
         return tables
