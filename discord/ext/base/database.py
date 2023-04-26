@@ -19,7 +19,7 @@ class Database:
     def get_engine(self) -> sqlalchemy.Engine:
         return self.engine
 
-    def get_connection(self) -> sqlalchemy.Connection:
+    def get_connection(self):
         return self.engine.connect()
 
     def get_metadata(self) -> sqlalchemy.MetaData:
