@@ -86,7 +86,8 @@ class BaseBot(commands.Bot):
         return config(self.runType, "config.json")
 
     def get_secure(self):
-        return config("production", "secure.json")
+        with open("Configs/secure.json", encoding='utf8') as file:
+            self._secure = json.load(file)
 
     def get_database(self) -> Database:
         return None
