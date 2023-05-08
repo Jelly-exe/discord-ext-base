@@ -41,9 +41,7 @@ class BaseBot(commands.Bot):
 
         self.logger.startup(f'{self._displayStep()}. Reading configs\'s')
         self._config = self.get_config()
-
-        with open("Configs/secure.json", encoding='utf8') as file:
-            self._secure = json.load(file)
+        self._secure = self.get_secure()
 
         self.logger.startup(f'{self._displayStep()}. Defining extensions and guild object')
         self.initial_extensions = []
@@ -86,6 +84,9 @@ class BaseBot(commands.Bot):
 
     def get_config(self):
         return config(self.runType, "config.json")
+
+    def get_secure(self):
+        return config("production", "secure.json")
 
     def get_database(self) -> Database:
         return None
