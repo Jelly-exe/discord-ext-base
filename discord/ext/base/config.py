@@ -1,5 +1,7 @@
 import json
-from typing import List
+from typing import List, Dict
+
+
 class DynamicAccessNestedDict:
     """Dynamically get/set nested dictionary keys of 'data' dict"""
 
@@ -61,7 +63,7 @@ class DynamicAccessNestedDict:
             data[lastkey] = val
 
 
-def config(runType: str, filename: str, path: str ="Configs") -> Dict:
+def config(runType: str, filename: str, path: str = "Configs") -> Dict:
     with open(f'{path}/Production/{filename}', encoding='utf8') as file:
         configFile = DynamicAccessNestedDict(json.load(file))
 
