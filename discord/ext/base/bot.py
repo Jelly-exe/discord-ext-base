@@ -25,7 +25,7 @@ class BaseBot(commands.Bot):
     def secure(self):
         return self._secure
 
-    def __init__(self, devMode: bool, status: Tuple[str, str]):
+    def __init__(self, dev_mode: bool, status: Tuple[str, str]):
         self.databaseURI = None
         self.step = 0
         self.persistent_views_added = False
@@ -34,8 +34,8 @@ class BaseBot(commands.Bot):
         loggerFormat = "[%DATE% | %TIME%] [%TAG%] %MSG%"
         self.logger = Logger(loggerFormat, False)
 
-        self.devMode = devMode
-        if devMode:
+        self.dev_mode = dev_mode
+        if self.dev_mode:
             self.logger = Logger(loggerFormat, True)
             self.runType = "development"
 
@@ -48,7 +48,7 @@ class BaseBot(commands.Bot):
         self.botGuild = discord.Object(id=self.config["guildId"])
 
         self.logger.startup(f'{self._displayStep()}. Setting activity')
-        activity = discord.Activity(name=status[1] if devMode else status[0], type=discord.ActivityType.playing)
+        activity = discord.Activity(name=status[1] if self.dev_mode else status[0], type=discord.ActivityType.playing)
 
         self.logger.startup(f'{self._displayStep()}. Setting up intents')
         intents = discord.Intents.all()
@@ -133,7 +133,7 @@ class BaseBot(commands.Bot):
         self.logger.startup(f'~~~~~~~~~~~~~')
         self.logger.startup(f'(Pterodactyl Bot Online)')
 
-        if self.devMode:
+        if self.self.dev_mode:
             self.logger.startup(f'DEV MODE')
 
         self.tree.copy_global_to(guild=self.botGuild)
