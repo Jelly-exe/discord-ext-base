@@ -77,7 +77,7 @@ class BaseBot(commands.Bot):
 
     def get_secure(self):
         with open("Configs/secure.json", encoding='utf8') as file:
-            self._secure = json.load(file)
+           return json.load(file)
 
     async def _getCogs(self):
         dontLoad = []
