@@ -10,7 +10,6 @@ from discord.app_commands import AppCommandError
 from discord.ext import commands
 from datetime import datetime
 
-from .database import Database
 from .logger import Logger
 from .config import config
 
