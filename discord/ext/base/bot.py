@@ -68,7 +68,7 @@ class BaseBot(commands.Bot):
         self.boot = datetime.now()
 
         self.logger.startup(f'{self._displayStep()}. Setting the token')
-        self.token = self.secure[self.runType]["token"]
+        self.token = self._secure[self.runType]["token"]
 
         self.tree.error(self.on_slash_command_error)
 
