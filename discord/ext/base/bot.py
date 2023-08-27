@@ -76,12 +76,6 @@ class BaseBot(commands.Bot):
 
         self.tree.error(self.on_slash_command_error)
 
-        self.matchIds = []
-        self.extra()
-
-    def extra(self):
-        pass
-
     def get_config(self):
         return config(self.runType, "config.json")
 
