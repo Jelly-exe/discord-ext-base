@@ -57,9 +57,6 @@ class BaseBot(commands.Bot):
         intents.presences = True
         intents.message_content = True
 
-        self.logger.startup(f'{self._displayStep()}. Connecting to database')
-        self.database = self.get_database()
-
         self.logger.startup(f'{self._displayStep()}. Initializing the bot')
         super().__init__(command_prefix=self._getPrefix(),
                          help_command=None,
@@ -82,9 +79,6 @@ class BaseBot(commands.Bot):
     def get_secure(self):
         with open("Configs/secure.json", encoding='utf8') as file:
             self._secure = json.load(file)
-
-    def get_database(self) -> Database:
-        return None
 
     async def _getCogs(self):
         dontLoad = []
