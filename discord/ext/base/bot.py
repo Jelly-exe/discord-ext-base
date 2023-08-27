@@ -120,7 +120,7 @@ class BaseBot(commands.Bot):
         self.logger.startup(f'~~~~~~~~~~~~~')
         self.logger.startup(f'(Pterodactyl Bot Online)')
 
-        if self.self.dev_mode:
+        if self.dev_mode:
             self.logger.startup(f'DEV MODE')
 
         self.tree.copy_global_to(guild=self.botGuild)
