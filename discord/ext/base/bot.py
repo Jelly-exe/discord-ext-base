@@ -72,6 +72,9 @@ class BaseBot(commands.Bot):
 
         self.tree.error(self.on_slash_command_error)
 
+    async def add_persistent_views(self):
+        pass
+
     def get_config(self):
         return config(self.runType, "config.json")
 
@@ -125,7 +128,10 @@ class BaseBot(commands.Bot):
 
         self.tree.copy_global_to(guild=self.botGuild)
         self.tree.clear_commands(guild=None)
+
         await self.tree.sync(guild=self.botGuild)
+
+        await self.add_persistent_views()
 
     @staticmethod
     async def on_slash_command_error(interaction: discord.Interaction, error: AppCommandError):
