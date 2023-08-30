@@ -29,14 +29,14 @@ class BaseBot(commands.Bot):
         self.step = 0
         self.persistent_views_added = False
 
-        self.runType = "production"
+        self.run_type = "production"
         loggerFormat = "[%DATE% | %TIME%] [%TAG%] %MSG%"
         self.logger = Logger(loggerFormat, False)
 
         self.dev_mode = dev_mode
         if self.dev_mode:
             self.logger = Logger(loggerFormat, True)
-            self.runType = "development"
+            self.run_type = "development"
 
         self.logger.startup(f'{self._displayStep()}. Reading configs\'s')
         self._config = self.get_config()
@@ -68,7 +68,7 @@ class BaseBot(commands.Bot):
         self.boot = datetime.now()
 
         self.logger.startup(f'{self._displayStep()}. Setting the token')
-        self.token = self._secure[self.runType]["token"]
+        self.token = self._secure[self.run_type]["token"]
 
         self.tree.error(self.on_slash_command_error)
 
@@ -76,7 +76,7 @@ class BaseBot(commands.Bot):
         pass
 
     def get_config(self):
-        return config(self.runType, "config.json")
+        return config("config.json", dev_mode=self.dev_mode)
 
     def get_secure(self):
         with open("Configs/secure.json", encoding='utf8') as file:
@@ -157,7 +157,7 @@ class BaseBot(commands.Bot):
             _log.error(error)
 
     async def ReloadConfig(self):
-        self.config = config(self.runType, "config.json")
+        self.config = config("config.json", dev_mode=self.dev_mode)
 
     def _getPrefix(self) -> str:
         return self.config["prefix"]

@@ -63,11 +63,11 @@ class DynamicAccessNestedDict:
             data[lastkey] = val
 
 
-def config(runType: str, filename: str, path: str = "Configs") -> Dict:
+def config(filename: str, path: str = "Configs", dev_mode: bool = False) -> Dict:
     with open(f'{path}/Production/{filename}', encoding='utf8') as file:
         configFile = DynamicAccessNestedDict(json.load(file))
 
-    if runType == "development":
+    if dev_mode:
         with open(f'{path}/Development/{filename}', encoding='utf8') as file:
             devConfig = json.load(file)
 
