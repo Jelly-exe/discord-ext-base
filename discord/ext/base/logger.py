@@ -5,8 +5,8 @@ from . import colours
 
 
 class Logger:
-    def __init__(self, client: BaseBot, log_format: str, debug: bool):
-        self.client: BaseBot = client
+    def __init__(self, client, log_format: str, debug: bool):
+        self.client = client
         self.format: str = log_format
         self.debug: bool = debug
 
