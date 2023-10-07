@@ -5,9 +5,10 @@ from . import colours
 
 
 class Logger:
-    def __init__(self, pFormat: str, pDebug: bool):
-        self.format = pFormat
-        self.pDebug = pDebug
+    def __init__(self, client: BaseBot, log_format: str, debug: bool):
+        self.client: BaseBot = client
+        self.format: str = log_format
+        self.debug: bool = debug
 
     def buildFormat(self, tag: str, colour: str, msg: str) -> str:
         return colour + self.format.replace("%DATE%", datetime.now().strftime("%d %m %Y")).replace("%TIME%", datetime.now().strftime("%H:%M:%S")).replace("%TAG%", tag).replace("%MSG%", msg)
@@ -16,7 +17,7 @@ class Logger:
         print(self.buildFormat("INFO", colours.OKCYAN, msg))
 
     def debug(self, msg: str) -> None:
-        if self.pDebug:
+        if self.debug:
             print(self.buildFormat("DEBUG", colours.OKCYAN, msg))
 
     def warn(self, msg: str) -> None:

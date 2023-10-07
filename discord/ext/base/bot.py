@@ -17,6 +17,10 @@ from .config import config
 class BaseBot(commands.Bot):
 
     @property
+    def logger(self):
+        return self._logger
+
+    @property
     def config(self):
         return self._config
 
@@ -24,19 +28,17 @@ class BaseBot(commands.Bot):
     def secure(self):
         return self._secure
 
-    def __init__(self, dev_mode: bool, status: Tuple[str, str]):
+    def __init__(self, dev_mode: bool, status: Tuple[str, str], logger: Logger = None):
+        self.dev_mode = dev_mode
+
         self.databaseURI = None
         self.step = 0
         self.persistent_views_added = False
 
-        self.run_type = "production"
         loggerFormat = "[%DATE% | %TIME%] [%TAG%] %MSG%"
-        self.logger = Logger(loggerFormat, False)
+        self._logger = logger if logger else Logger(self, loggerFormat, self.dev_mode)
 
-        self.dev_mode = dev_mode
-        if self.dev_mode:
-            self.logger = Logger(loggerFormat, True)
-            self.run_type = "development"
+        self.run_type = "production" if self.dev_mode else "development"
 
         self.logger.startup(f'{self._displayStep()}. Reading configs\'s')
         self._config = self.get_config()
@@ -80,7 +82,7 @@ class BaseBot(commands.Bot):
 
     def get_secure(self):
         with open("Configs/secure.json", encoding='utf8') as file:
-           return json.load(file)
+            return json.load(file)
 
     async def _getCogs(self):
         dontLoad = []
